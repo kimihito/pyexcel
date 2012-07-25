@@ -16,4 +16,4 @@ if __name__ == "__main__":
   newSheet_1_row_1.write(3,"D2")
   newSheet_1_row_1.write(4,"E2")
 
-  book.save('sample.xls')
+  book.save('sample.csv')
