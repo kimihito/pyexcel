@@ -8,7 +8,9 @@
             ItemField.currentNumber = 1;
             ItemField.itemTemplate 
         </script>
-        <script type="text/javascript">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
+       <!-- <script type="text/javascript">
             function checkForm(){
                 if(document.f1.name.value == ""){
                     alert('品名が未記入です');
@@ -28,18 +30,22 @@
                 return true;
             }
         </script>
+        -->
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#form").validate();
+            });
+        </script>
     </head>
     <body>
-        <div id="item">
         <h3>商品登録</h3>
-        <form action="cgi-bin/write.py" method="POST" name="f1" onsubmit="return checkForm()">
+        <form action="cgi-bin/write.py" method="POST" id="form">
             品名:
-            <input type="TEXT" name="name" size="30" maxlength="1000"/><br />
+            <input type="TEXT" class="required" name="name" size="30" maxlength="1000"/><br />
             価格:
-            <input type="TEXT" name="price" size="30" maxlength="1000" /><br />
+            <input type="TEXT" class="required" name="price" size="30" maxlength="1000" /><br />
             個数:
-            <input type="TEXT" name="piece" size="2" maxlength="100" />個<br />
-        </div>
+            <input type="TEXT" class="required" name="piece" size="2" maxlength="100" />個<br />
             <div id="item2"></div>
             <input type="BUTTON" value="登録商品を追加" onclick="ItemField.add();" />
             <input type="BUTTON" value="登録商品を削除" onclick="ItemField.remove();" />
