@@ -10,22 +10,18 @@
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
        <script type="text/javascript">
-            function isBlank(index) {
-              return this.value == "";
-            }
-
             function checkForm(){
-              if ($('input[name="name"]').filter(isBlank).length >= 1) {
+              if ($("input[name='name'][value=]").length >= 1) {
                 alert('品名が未記入です');
                 return false;
               }
 
-              if ($("input[name='price']").filter(isBlank).length >= 1) {
+              if ($("input[name='price'][value=]").length >= 1) {
                 alert('価格が未記入です');
                 return false;
               }
 
-              if ($("input[name='piece']").filter(isBlank).length >= 1) {
+              if ($("input[name='piece'][value=]").length >= 1) {
                 alert('個数が未記入です');
                 return false;
               }
