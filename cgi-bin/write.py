@@ -4,33 +4,6 @@ import xlwt
 import cgi
 from datetime import date
 
-print "Content-Type: text/html;charset=UTF-8\n\n"
-
-print "<html><body>"
-
-form = cgi.FieldStorage()
-if form.has_key("name") and form.has_key("price") and form.has_key("piece"):
-
-    params = [form.getlist(param) for param in ["name","price","piece"]]
-
-    items =  zip(*params)
-
-    book = xlwt.workbook(encoding='utf-8')
-    newsheet = book.add_sheet("商品登録")
-
-    for i,item in enumerate(items):
-        row = newsheet.row(i+1)
-        putItem(row, item)
-        printItem(item)
-
-else:
-    printError()
-
-print "</body></html>"
-
-date = date.today()
-book.save(str(date) + ".csv")
-
 def printItem(item):
     name,price,piece = item
     print "<h2>Result</h2><br />" 
@@ -54,3 +27,32 @@ def putItem(row,item):
 def printError():
     print "<h1>ERROR</h1>\n\n"
     print "someform(s) are empty"
+
+
+print "Content-Type: text/html;charset=UTF-8\n\n"
+
+print "<html><body>"
+
+form = cgi.FieldStorage()
+if form.has_key("name") and form.has_key("price") and form.has_key("piece"):
+
+    params = [form.getlist(param) for param in ["name","price","piece"]]
+
+    items =  zip(*params)
+
+    book = xlwt.Workbook()
+    newsheet = book.add_sheet(u"商品登録")
+
+    for i,item in enumerate(items):
+        row = newsheet.row(i+1)
+        putItem(row, item)
+        printItem(item)
+
+else:
+    printError()
+
+print "</body></html>"
+
+date = date.today()
+book.save(str(date) + ".csv")
+
