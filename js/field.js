@@ -1,6 +1,6 @@
 var ItemField = { 
     currentNumber : 1, 
-    itemTemplate : '<h3>商品登録__count__</h3>' +'品名:<input type="text" class="required" name="name__count__" size="30" maxlength="1000"/><br />\n価格:<input type="text" class="required" name="price__count__" size="30" maxlength="1000" /><br />\n個数:<input type="text" class="required" name="piece__count__" size="2" maxlength="100" />個<br />\n',
+    itemTemplate : '<h3>商品登録__count__</h3>' +'品名:<input type="text" name="name" size="30" maxlength="1000"/><br />\n価格:<input type="text" name="price" size="30" maxlength="1000" /><br />\n個数:<input type="text" name="piece" size="2" maxlength="100" />個<br />\n',
     add : function(){ 
         this.currentNumber++; 
         var field = document.getElementById('item' + this.currentNumber); 

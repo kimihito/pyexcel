@@ -6,48 +6,45 @@
         <script type="text/javascript" src="js/field.js"></script>
         <script type="text/javascript">
             ItemField.currentNumber = 1;
-            ItemField.itemTemplate 
+            ItemField.itemTemplate
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
-       <!-- <script type="text/javascript">
-            function checkForm(){
-                if(document.f1.name.value == ""){
-                    alert('品名が未記入です');
-                    document.f1.name.focus();
-                    return false;
-                }
-                if(document.f1.price.value == ""){
-                    alert('価格が未記入です');
-                    document.f1.price.focus();
-                    return false;
-                }
-                if(document.f1.piece.value == ""){
-                    alert('個数が未記入です');
-                    document.f1.piece.focus();
-                    return false;
-                }
-                return true;
+       <script type="text/javascript">
+            function isBlank(index) {
+              return this.value == "";
             }
-        </script>
-        -->
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $("#form").validate();
-            });
+
+            function checkForm(){
+              if ($('input[name="name"]').filter(isBlank).length >= 1) {
+                alert('品名が未記入です');
+                return false;
+              }
+
+              if ($("input[name='price']").filter(isBlank).length >= 1) {
+                alert('価格が未記入です');
+                return false;
+              }
+
+              if ($("input[name='piece']").filter(isBlank).length >= 1) {
+                alert('個数が未記入です');
+                return false;
+              }
+
+              return true;
+            }
         </script>
     </head>
     <body>
-    <form action="cgi-bin/write.py" method="POST" id="form">
+    <form action="cgi-bin/write.py" method="POST" id="form" onsubmit="return checkForm()">
         <h3>商品登録</h3>
             品名:
-            <input type="TEXT" class="required" name="name" size="30" maxlength="1000"/><br />
+            <input type="TEXT" name="name" size="30" maxlength="1000"/><br />
             価格:
-            <input type="TEXT" class="required" name="price" size="30" maxlength="1000" /><br />
+            <input type="TEXT" name="price" size="30" maxlength="1000" /><br />
             個数:
-            <input type="TEXT" class="required" name="piece" size="2" maxlength="100" />個<br />
+            <input type="TEXT" name="piece" size="2" maxlength="100" />個<br />
             <div id="item2"></div>
-            <input type="BUTTON" value="登録商品を追加" onclick="ItemField.add();$('#form').validate();" />
+            <input type="BUTTON" value="登録商品を追加" onclick="ItemField.add();" />
             <input type="BUTTON" value="登録商品を削除" onclick="ItemField.remove();" />
             <br />
             <input type="SUBMIT" value="送信" />
